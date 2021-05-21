@@ -33,7 +33,7 @@ try{
 
    videoPlayer.srcObject = mediastream;
 
-   mediaRecorder = new mediaRecorder(mediastream);
+   mediaRecorder = new MediaRecorder(mediastream);
 
    mediaRecorder.onstop = function(e){
 
