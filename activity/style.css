@@ -28,7 +28,8 @@ video {
   align-items: center;
 }
 
-.media-controls>div { /* > styling only applies to the media-container children. not the nested one. does not apply to nested ones*/
+.media-controls>div { /* ">" styling only applies to the media-container children. not the nested one. does not apply to nested ones. Leaves the flow of the document
+  */
   height: 80px;
   width: 80px;
   /* background: brown; */
@@ -51,4 +52,33 @@ video {
   height: 70%;
   width: 70%;
   border-radius: 50%;
+}
+
+
+.record-animate {
+  animation: scaleUpDown 1s infinite;
+}
+
+.capture-animate {
+  animation: scaleUpDown 1s 1;
+}
+
+
+
+/* keyframe keyword is used to introduce animation. it takes inital and final times. can also take intermediate times*/
+
+@keyframes scaleUpDown {
+
+  0%{
+    transform:scale(1); /*at 0% time it's a original place */
+  }
+
+  50% {
+       transform : scale(0.9);
+  }
+
+  100% {
+
+    transform: scale(1);
+  }
 }

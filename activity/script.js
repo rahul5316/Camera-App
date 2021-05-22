@@ -68,13 +68,13 @@ let mediaRecorder;
 
       mediaRecorder.stop();
 
-      recordedButton.innerHTML = "Record";
+      recordedButton.querySelector("div").classList.remove("record-animate");
     }
     else {
 
       mediaRecorder.start();
 
-      recordedButton.innerHTML = "Recording";
+      recordedButton.querySelector("div").classList.add("record-animate");
     }
 
     recordingState = !recordingState;
@@ -110,6 +110,16 @@ function saveVideoToFs() {
 
 
 function capturePhotos() {
+
+  photoButton.querySelector("div").classList.add("capture-animate");
+
+  setTimeout(function(){
+
+    photoButton.querySelector("div").classList.remove("capture-animate")
+  }, 1000);
+
+
+
 
   let canvas = document.createElement("canvas");
 
