@@ -82,3 +82,22 @@ video {
     transform: scale(1);
   }
 }
+
+.zoomInOut {
+  flex-direction: column;
+  height: 60px !important;
+  border-radius: 0 !important;
+  border: none !important;
+  justify-content: space-between !important;
+}
+
+.zoomInOut div {
+  background: white;
+  height: 35%;
+  width: 40%;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
