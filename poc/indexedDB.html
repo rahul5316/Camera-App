@@ -6,32 +6,89 @@
   <title>Index DB Demo</title>
 </head>
 <body>
+
+  <div>
+
+    Databse Name <input id = "Database-name" type = "text">
+    Version <input id = "Database-version" type="text">
+    <button id ="openDB">Open Database</button>
+  </div>
+
+  <div>
+
+    mid <input id = "media-id" type="text">
+    type <input id = "media-type" type="text">
+    <button id = "addMedia">Add Media</button>
+  </div>
   
 
   <script>
 
     let db;
 
-    let dbRequest = indexedDB.open("Gallery"); 
+    let dbVersion = document.querySelector("#Database-name");
+    let dbVersion = document.querySelector("#Database-version");
+    let openDBBtn = document.querySelector("#openDB");
 
-    console.log(dbRequest);
+    let mid = document.querySelector("media-id");
+    let mediaType = document.querySelector("#media-type");
+      let addMediaBtn = document.querySelector("#addMedia");
 
-    dbRequest.onupgradeneeded = function(e) {
+      openDBBtn.addEventListener("click", openDB);
+      addMediaBtn.addEventListener("click", addMedia);
 
-      console.log("In upgrade Event");
+      function openDB() {
+          
+          //db open //create db
+        let dbRequest = indexedDB.open(dbName.value, dbVersion.value);
 
-      db = e.target.result;
+        dbRequest.onupgradeneeded = function(e) {
 
-      console.log(db);
-    }
+          alert("In Upgrade Event");
 
-    dbRequest.onsuccess = function(e) {
-      console.log("In Success Event");
-       db = e.target.result;
-       console.log(db);
-    }
+          db = e.target.result;
+
+          let mediaTable = db.createObjectStore("Media" , {keyPath : "mid"}); 
+          //creates a table from above code
+        }
+
+        dbRequest.onsuccess = function(e){
+                alert("In Success Event");
+                db = e.target.result;
+                console.log(db);
+            };
+            dbRequest.onerror = function(e){
+                alert("In Error Event !");
+                console.log(e);
+            }
+
+
+      }
+
+
+
+    // let dbRequest = indexedDB.open("Gallery"); 
+
+    // console.log(dbRequest);
+
+    // dbRequest.onupgradeneeded = function(e) {
+
+    //   console.log("In upgrade Event");
+
+    //   db = e.target.result;
+
+    //   console.log(db);
+    // }
+
+    // dbRequest.onsuccess = function(e) {
+    //   console.log("In Success Event");
+    //    db = e.target.result;
+    //    console.log(db);
+    // }
+
+    // quick not we use async if the function is async
       
- // these two function are required in order for indexeddb to run
+ // these two function are required in order for indexeddb to run. These above two function works hen there is no database. it's another story when there is database.
 
 
 
