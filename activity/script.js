@@ -124,16 +124,24 @@ function saveVideoToFs() {
 
   let videoUrl = URL.createObjectURL(recordedData); //converts blob data to Url
 
-  console.log(videoUrl);
+  let iv = setInterval (function(){
 
-  let aTag = document.createElement("a");
+    if(db) {
+      saveMedia("Video",videoUrl);
+      clearInterval(iv);
+    }
+  },100);
 
-  aTag.download = "video.mp4";
+ // console.log(videoUrl);
 
-  aTag.href = videoUrl;
+  // let aTag = document.createElement("a");
 
-  aTag.click();
-  aTag.remove();
+  // aTag.download = "video.mp4";
+
+  // aTag.href = videoUrl;
+
+  // aTag.click();
+  // aTag.remove();
 }
 
 
@@ -169,11 +177,21 @@ function capturePhotos() {
   let imageUrl = canvas.toDataURL("image/jpg");
   //canvas object => file url string
 
-  let aTag = document.createElement("a");
 
-  aTag.download = "photo,jpg";
-  aTag.href = imageUrl;
-  aTag.click();
+  let iv = setInterval(function() {
+
+    if(db) {
+      saveMedia("image", imageUrl);
+      clearInterval(iv);
+    }
+  },100);
+
+  //skip downloading part
+  // let aTag = document.createElement("a");
+
+  // aTag.download = "photo,jpg";
+  // aTag.href = imageUrl;
+  // aTag.click();
 }
 
 
